@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class PlayerController {
 
     @Autowired
-    private  PlayerService playerService;
+    private PlayerService playerService;
 
     @Autowired
     private ModelMapper mapper;

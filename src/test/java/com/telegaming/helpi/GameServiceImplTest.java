@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
-public class GamerServiceImplTest {
+public class GameServiceImplTest {
 
     @MockBean
     private GameRepository gameRepository;
