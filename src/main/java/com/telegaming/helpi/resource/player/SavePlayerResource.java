@@ -1,4 +1,4 @@
-package com.telegaming.helpi.resource;
+package com.telegaming.helpi.resource.player;
 
 import javax.validation.constraints.Size;
 import java.time.LocalDate;

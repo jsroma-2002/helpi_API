@@ -1,8 +1,7 @@
 package com.telegaming.helpi.domain.model;
 
-import com.sun.istack.NotNull;
-
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -13,6 +12,7 @@ public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
     @NotNull
     private String email;

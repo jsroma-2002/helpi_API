@@ -1,4 +1,4 @@
-package com.telegaming.helpi.resource;
+package com.telegaming.helpi.resource.player;
 
 import java.time.LocalDate;
 import java.time.Period;

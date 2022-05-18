@@ -2,8 +2,8 @@ package com.telegaming.helpi.controller;
 
 import com.telegaming.helpi.domain.model.Player;
 import com.telegaming.helpi.domain.service.PlayerService;
-import com.telegaming.helpi.resource.PlayerResource;
-import com.telegaming.helpi.resource.SavePlayerResource;
+import com.telegaming.helpi.resource.player.PlayerResource;
+import com.telegaming.helpi.resource.player.SavePlayerResource;
 import io.swagger.v3.oas.annotations.Operation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
