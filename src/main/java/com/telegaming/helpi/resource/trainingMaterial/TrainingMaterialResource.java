@@ -1,11 +1,14 @@
 package com.telegaming.helpi.resource.trainingMaterial;
 
+import com.telegaming.helpi.domain.model.Game;
+
 public class TrainingMaterialResource {
 
     private Long trainingMaterialId;
     private String title;
     private String trainingDescription;
     private String trainingCoverUri;
+    private Game game;
 
     public Long getTrainingMaterialId() {
         return trainingMaterialId;
@@ -37,5 +40,13 @@ public class TrainingMaterialResource {
 
     public void setTrainingCoverUri(String trainingCoverUri) {
         this.trainingCoverUri = trainingCoverUri;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 }

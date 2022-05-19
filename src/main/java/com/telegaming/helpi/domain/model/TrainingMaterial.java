@@ -17,6 +17,10 @@ public class TrainingMaterial {
     @NotNull
     private String trainingCoverUri;
 
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "game_id", referencedColumnName = "gameId")
+    private Game game;
+
     public TrainingMaterial() {
     }
 
@@ -56,5 +60,13 @@ public class TrainingMaterial {
 
     public void setTrainingCoverUri(String trainingCoverUri) {
         this.trainingCoverUri = trainingCoverUri;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 }

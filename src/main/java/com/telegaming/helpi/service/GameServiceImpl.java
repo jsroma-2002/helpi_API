@@ -38,7 +38,7 @@ public class GameServiceImpl implements GameService {
         Game game = gameRepository.findById(gameId)
                 .orElseThrow(()->new ResourceNotFoundException("Game", "Id", gameId));
 
-        game.setName(gameRequest.getName());
+        game.setGameName(gameRequest.getGameName());
         game.setDescription(gameRequest.getDescription());
         game.setCoverUri(gameRequest.getCoverUri());
 

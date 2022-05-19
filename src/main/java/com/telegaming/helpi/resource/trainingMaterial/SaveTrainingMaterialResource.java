@@ -1,5 +1,7 @@
 package com.telegaming.helpi.resource.trainingMaterial;
 
+import com.telegaming.helpi.domain.model.Game;
+
 import javax.validation.constraints.Size;
 
 public class SaveTrainingMaterialResource {
@@ -32,4 +34,5 @@ public class SaveTrainingMaterialResource {
     public void setTrainingCoverUri(String trainingCoverUri) {
         this.trainingCoverUri = trainingCoverUri;
     }
+
 }

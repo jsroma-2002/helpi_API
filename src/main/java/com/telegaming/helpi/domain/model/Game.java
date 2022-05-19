@@ -1,7 +1,11 @@
 package com.telegaming.helpi.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "games")
@@ -17,6 +21,10 @@ public class Game {
     @NotNull
     private String coverUri;
 
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "game")
+    private Set<TrainingMaterial> trainingMaterials= new HashSet<>();
+
     public Game() {
     }
 
@@ -26,20 +34,20 @@ public class Game {
         this.coverUri = coverUri;
     }
 
-    public long getId() {
+    public Long getGameId() {
         return gameId;
     }
 
-    public void setId(long id) {
-        this.gameId = id;
+    public void setGameId(Long gameId) {
+        this.gameId = gameId;
     }
 
-    public String getName() {
+    public String getGameName() {
         return gameName;
     }
 
-    public void setName(String name) {
-        this.gameName = name;
+    public void setGameName(String gameName) {
+        this.gameName = gameName;
     }
 
     public String getDescription() {
@@ -56,5 +64,9 @@ public class Game {
 
     public void setCoverUri(String coverUri) {
         this.coverUri = coverUri;
+    }
+
+    public Set<TrainingMaterial> getTrainingMaterials() {
+        return trainingMaterials;
     }
 }

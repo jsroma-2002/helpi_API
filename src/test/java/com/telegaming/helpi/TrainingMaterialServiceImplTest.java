@@ -1,6 +1,8 @@
 package com.telegaming.helpi;
 
+import com.telegaming.helpi.domain.model.Game;
 import com.telegaming.helpi.domain.model.TrainingMaterial;
+import com.telegaming.helpi.domain.repository.GameRepository;
 import com.telegaming.helpi.domain.repository.TrainingMaterialRepository;
 import com.telegaming.helpi.domain.service.TrainingMaterialService;
 import com.telegaming.helpi.exception.ResourceNotFoundException;
@@ -25,6 +27,9 @@ public class TrainingMaterialServiceImplTest {
 
     @MockBean
     private TrainingMaterialRepository trainingMaterialRepository;
+
+    @MockBean
+    private GameRepository gameRepository;
 
     @Autowired
     private TrainingMaterialService trainingMaterialService;
@@ -60,10 +65,18 @@ public class TrainingMaterialServiceImplTest {
         TrainingMaterial trainingMaterial = new TrainingMaterial();
         trainingMaterial.setTrainingMaterialId(id);
 
+        Long gameId = 1L;
+        Game game = new Game();
+        game.setGameId(gameId);
+
         when(trainingMaterialRepository.save(trainingMaterial))
                 .thenReturn(trainingMaterial);
+
+        when(gameRepository.findById(gameId))
+                .thenReturn(Optional.of(game));
+
         //Act
-        TrainingMaterial foundTrainingMaterial = trainingMaterialService.createTrainingMaterial(trainingMaterial);
+        TrainingMaterial foundTrainingMaterial = trainingMaterialService.createTrainingMaterial(trainingMaterial, gameId);
         //Assert
         assertThat(foundTrainingMaterial.getTrainingMaterialId()).isEqualTo(id);
     }
@@ -76,6 +89,10 @@ public class TrainingMaterialServiceImplTest {
         TrainingMaterial trainingMaterial = new TrainingMaterial();
         trainingMaterial.setTrainingMaterialId(id);
 
+        Long gameId = 1L;
+        Game game = new Game();
+        game.setGameId(gameId);
+
         String updateTitle = "updateTitle";
         String updateDescription = "updateDescription";
         TrainingMaterial updateTrainingMaterial = new TrainingMaterial();
@@ -86,8 +103,10 @@ public class TrainingMaterialServiceImplTest {
                 .thenReturn(trainingMaterial);
         when(trainingMaterialRepository.findById(id))
                 .thenReturn(Optional.of(trainingMaterial));
+        when(gameRepository.findById(gameId))
+                .thenReturn(Optional.of(game));
         //Act
-        TrainingMaterial foundTrainingMaterial = trainingMaterialService.createTrainingMaterial(trainingMaterial);
+        TrainingMaterial foundTrainingMaterial = trainingMaterialService.createTrainingMaterial(trainingMaterial, gameId);
         trainingMaterialService.updateTrainingMaterial(id, updateTrainingMaterial);
         //Assert
         assertThat(foundTrainingMaterial.getTitle()).isEqualTo(updateTitle);

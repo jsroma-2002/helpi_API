@@ -8,7 +8,8 @@ import org.springframework.http.ResponseEntity;
 public interface TrainingMaterialService {
     Page<TrainingMaterial> getAllTrainingMaterials(Pageable pageable);
     TrainingMaterial getTrainingMaterialById(Long trainingMaterialId);
-    TrainingMaterial createTrainingMaterial(TrainingMaterial trainingMaterial);
+    Page<TrainingMaterial> getTrainingMaterialByGameId(Long gameId, Pageable pageable);
+    TrainingMaterial createTrainingMaterial(TrainingMaterial trainingMaterial, Long gameId);
     TrainingMaterial updateTrainingMaterial(Long trainingMaterialId, TrainingMaterial trainingMaterialRequest);
     ResponseEntity<?> deleteTrainingMaterial(Long trainingMaterialId);
 }

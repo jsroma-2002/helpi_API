@@ -45,12 +45,23 @@ public class TrainingMaterialController {
         return convertToResource(trainingMaterialService.getTrainingMaterialById(trainingMaterialId));
     }
 
+    @Operation(summary = "Get TrainingMaterial By Game Id", description = "Get TrainingMaterial By Game Id", tags = {"trainingMaterials"})
+    @GetMapping("/{gameId}/trainings")
+    public Page<TrainingMaterialResource> getTrainingMaterialByGameId(Pageable pageable, @PathVariable Long gameId){
+        Page<TrainingMaterial> trainingMaterialPage = trainingMaterialService.getTrainingMaterialByGameId(gameId, pageable);
+        List<TrainingMaterialResource> resources = trainingMaterialPage.getContent()
+                .stream()
+                .map(this::convertToResource)
+                .collect(Collectors.toList());
+
+        return new PageImpl<>(resources, pageable, resources.size());
+    }
 
     @Operation(summary = "Post TrainingMaterial", description = "Post TrainingMaterial", tags = {"trainingMaterials"})
-    @PostMapping
-    public TrainingMaterialResource createTrainingMaterial(@Valid @RequestBody SaveTrainingMaterialResource resource){
+    @PostMapping("/{gameId}")
+    public TrainingMaterialResource createTrainingMaterial(@Valid @RequestBody SaveTrainingMaterialResource resource, @PathVariable Long gameId){
         TrainingMaterial trainingMaterial = convertToEntity(resource);
-        return convertToResource(trainingMaterialService.createTrainingMaterial(trainingMaterial));
+        return convertToResource(trainingMaterialService.createTrainingMaterial(trainingMaterial, gameId));
     }
 
     @Operation(summary = "Update TrainingMaterial", description = "Update TrainingMaterial", tags = {"trainingMaterials"})

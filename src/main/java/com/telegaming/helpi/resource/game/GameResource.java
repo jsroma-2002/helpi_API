@@ -1,18 +1,23 @@
 package com.telegaming.helpi.resource.game;
 
+import com.telegaming.helpi.domain.model.TrainingMaterial;
+
+import java.util.HashSet;
+import java.util.Set;
+
 public class GameResource {
 
-    private Long id;
+    private Long gameId;
     private String name;
     private String description;
     private String coverUri;
 
     public Long getId() {
-        return id;
+        return gameId;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.gameId = id;
     }
 
     public String getName() {
@@ -38,4 +43,5 @@ public class GameResource {
     public void setCoverUri(String coverUri) {
         this.coverUri = coverUri;
     }
+
 }

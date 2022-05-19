@@ -43,13 +43,13 @@ public class GameServiceImplTest {
         //Arrange
         Long id = 1L;
         Game game = new Game();
-        game.setId(id);
+        game.setGameId(id);
         when(gameRepository.findById(id))
                 .thenReturn(Optional.of(game));
         //Act
         Game foundGame = gameService.getGameById(id);
         //Assert
-        assertThat(foundGame.getId()).isEqualTo(id);
+        assertThat(foundGame.getGameId()).isEqualTo(id);
     }
 
     @Test
@@ -58,14 +58,14 @@ public class GameServiceImplTest {
         //Arrange
         Long id = 1L;
         Game game = new Game();
-        game.setId(id);
+        game.setGameId(id);
 
         when(gameRepository.save(game))
                 .thenReturn(game);
         //Act
         Game foundGame = gameService.createGame(game);
         //Assert
-        assertThat(foundGame.getId()).isEqualTo(id);
+        assertThat(foundGame.getGameId()).isEqualTo(id);
     }
 
     @Test
@@ -74,12 +74,12 @@ public class GameServiceImplTest {
         //Arrange
         Long id = 1L;
         Game game = new Game();
-        game.setId(id);
+        game.setGameId(id);
 
         String updateName = "updateName";
         String updateDescription = "updateDescription";
         Game updateGame = new Game();
-        updateGame.setName(updateName);
+        updateGame.setGameName(updateName);
         updateGame.setDescription(updateDescription);
 
         when(gameRepository.save(game))
@@ -90,7 +90,7 @@ public class GameServiceImplTest {
         Game foundGame = gameService.createGame(game);
         gameService.updateGame(id, updateGame);
         //Assert
-        assertThat(foundGame.getName()).isEqualTo(updateName);
+        assertThat(foundGame.getGameName()).isEqualTo(updateName);
     }
 
     @Test
