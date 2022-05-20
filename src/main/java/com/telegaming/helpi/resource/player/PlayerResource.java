@@ -1,7 +1,12 @@
 package com.telegaming.helpi.resource.player;
 
+import com.telegaming.helpi.domain.model.TrainingMaterial;
+import com.telegaming.helpi.resource.trainingMaterial.TrainingMaterialResource;
+
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.HashSet;
+import java.util.Set;
 
 public class PlayerResource {
 

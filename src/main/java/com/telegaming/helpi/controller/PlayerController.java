@@ -60,6 +60,13 @@ public class PlayerController {
         return convertToResource(playerService.updatePlayer(playerId, player));
     }
 
+    @Operation(summary = "Purchase training material", description = "Purchase training material", tags = {"players"})
+    @PutMapping("/{playerId}/training/{trainingId}")
+    public PlayerResource purchaseTrainingMaterial(@PathVariable long playerId, @PathVariable long trainingId){
+
+        return convertToResource(playerService.purchaseTrainingMaterial(playerId, trainingId));
+    }
+
     @Operation(summary = "Delete Player", description = "Delete Player", tags = {"players"})
     @DeleteMapping("/{playerId}")
     public ResponseEntity<?> deletePlayer(@PathVariable long playerId){

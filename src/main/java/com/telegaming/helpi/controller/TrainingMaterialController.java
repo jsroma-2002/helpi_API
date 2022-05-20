@@ -57,6 +57,18 @@ public class TrainingMaterialController {
         return new PageImpl<>(resources, pageable, resources.size());
     }
 
+    @Operation(summary = "Get TrainingMaterial By Player Id", description = "Get TrainingMaterial By Player Id", tags = {"trainingMaterials"})
+    @GetMapping("/player/{playerId}")
+    public Page<TrainingMaterialResource> getTrainingMaterialByPlayerId(Pageable pageable, @PathVariable Long playerId){
+        Page<TrainingMaterial> trainingMaterialPage = trainingMaterialService.getTrainingMaterialByPlayerId(playerId, pageable);
+        List<TrainingMaterialResource> resources = trainingMaterialPage.getContent()
+                .stream()
+                .map(this::convertToResource)
+                .collect(Collectors.toList());
+
+        return new PageImpl<>(resources, pageable, resources.size());
+    }
+
     @Operation(summary = "Post TrainingMaterial", description = "Post TrainingMaterial", tags = {"trainingMaterials"})
     @PostMapping("/{gameId}")
     public TrainingMaterialResource createTrainingMaterial(@Valid @RequestBody SaveTrainingMaterialResource resource, @PathVariable Long gameId){

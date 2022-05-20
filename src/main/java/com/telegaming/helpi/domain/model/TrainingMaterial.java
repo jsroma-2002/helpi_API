@@ -2,6 +2,8 @@ package com.telegaming.helpi.domain.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "trainings")
@@ -20,6 +22,14 @@ public class TrainingMaterial {
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "game_id", referencedColumnName = "gameId")
     private Game game;
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "player_owner",
+            joinColumns = @JoinColumn(name = "training_material_id"),
+            inverseJoinColumns = @JoinColumn(name = "id")
+    )
+    private Set<Player> ownerPlayers = new HashSet<>();
 
     public TrainingMaterial() {
     }
@@ -68,5 +78,9 @@ public class TrainingMaterial {
 
     public void setGame(Game game) {
         this.game = game;
+    }
+
+    public Set<Player> getOwnerPlayers() {
+        return ownerPlayers;
     }
 }

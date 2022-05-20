@@ -10,6 +10,7 @@ public interface PlayerService {
     Player getPlayerById(Long playerId);
     Player createPlayer(Player player);
     Player updatePlayer(Long playerId, Player playerRequest);
+    Player purchaseTrainingMaterial(Long playerId, Long trainingId);
     ResponseEntity<?> deletePlayer(Long playerId);
 
 }

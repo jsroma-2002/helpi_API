@@ -2,6 +2,7 @@ package com.telegaming.helpi;
 
 import com.telegaming.helpi.domain.model.Player;
 import com.telegaming.helpi.domain.repository.PlayerRepository;
+import com.telegaming.helpi.domain.repository.TrainingMaterialRepository;
 import com.telegaming.helpi.domain.service.PlayerService;
 import com.telegaming.helpi.exception.ResourceNotFoundException;
 import com.telegaming.helpi.service.PlayerServiceImpl;
@@ -25,6 +26,9 @@ public class PlayerServiceImplTest {
 
     @MockBean
     private PlayerRepository playerRepository;
+
+    @MockBean
+    private TrainingMaterialRepository trainingMaterialRepository;
 
     @Autowired
     private PlayerService playerService;

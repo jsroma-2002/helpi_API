@@ -1,7 +1,9 @@
 package com.telegaming.helpi.service;
 
 import com.telegaming.helpi.domain.model.Player;
+import com.telegaming.helpi.domain.model.TrainingMaterial;
 import com.telegaming.helpi.domain.repository.PlayerRepository;
+import com.telegaming.helpi.domain.repository.TrainingMaterialRepository;
 import com.telegaming.helpi.domain.service.PlayerService;
 import com.telegaming.helpi.exception.ResourceIncorrectData;
 import com.telegaming.helpi.exception.ResourceNotFoundException;
@@ -17,6 +19,8 @@ public class PlayerServiceImpl implements PlayerService {
     @Autowired
     private PlayerRepository playerRepository;
 
+    @Autowired
+    private TrainingMaterialRepository trainingMaterialRepository;
 
     @Override
     public Page<Player> getAllPlayers(Pageable pageable) {
@@ -52,6 +56,23 @@ public class PlayerServiceImpl implements PlayerService {
 
         return playerRepository.save(player);
 
+    }
+
+    @Override
+    public Player purchaseTrainingMaterial(Long playerId, Long trainingId) {
+        Player player = playerRepository.findById(playerId)
+                .orElseThrow(()->new ResourceNotFoundException("Player", "Id", playerId));
+
+        TrainingMaterial trainingMaterial = trainingMaterialRepository.findById(trainingId)
+                .orElseThrow(()->new ResourceNotFoundException("Training", "Id", trainingId));
+
+        if (!player.getOwnedTrainingMaterials().contains(trainingMaterial)){
+            player.purchaseTraining(trainingMaterial);
+            trainingMaterial.getOwnerPlayers().add(player);
+        }
+        trainingMaterialRepository.save(trainingMaterial);
+
+        return playerRepository.save(player);
     }
 
     @Override
