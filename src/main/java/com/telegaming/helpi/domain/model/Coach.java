@@ -117,4 +117,8 @@ public class Coach {
         this.ownedTrainingMaterials = ownedTrainingMaterials;
         return this;
     }
+
+    public void postTrainingMaterial(TrainingMaterial trainingMaterial){
+        ownedTrainingMaterials.add(trainingMaterial);
+    }
 }
