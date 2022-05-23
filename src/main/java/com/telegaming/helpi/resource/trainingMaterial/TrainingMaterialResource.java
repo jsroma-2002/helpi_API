@@ -1,5 +1,6 @@
 package com.telegaming.helpi.resource.trainingMaterial;
 
+import com.telegaming.helpi.domain.model.Coach;
 import com.telegaming.helpi.domain.model.Game;
 
 public class TrainingMaterialResource {
@@ -9,6 +10,7 @@ public class TrainingMaterialResource {
     private String trainingDescription;
     private String trainingCoverUri;
     private Game game;
+    private Coach coach;
 
     public Long getTrainingMaterialId() {
         return trainingMaterialId;
@@ -48,5 +50,13 @@ public class TrainingMaterialResource {
 
     public void setGame(Game game) {
         this.game = game;
+    }
+
+    public Coach getCoach() {
+        return coach;
+    }
+
+    public void setCoach(Coach coach) {
+        this.coach = coach;
     }
 }
