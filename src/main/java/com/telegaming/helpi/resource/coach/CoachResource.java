@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class CoachResource {
 
-    private Long id;
+    private Long coachId;
     private String name;
     private String email;
     private String password;
@@ -12,12 +12,12 @@ public class CoachResource {
     private LocalDate birthDate;
     private Integer age;
 
-    public Long getId() {
-        return id;
+    public Long getCoachId() {
+        return coachId;
     }
 
-    public CoachResource setId(Long id) {
-        this.id = id;
+    public CoachResource setCoachId(Long coachId) {
+        this.coachId = coachId;
         return this;
     }
 

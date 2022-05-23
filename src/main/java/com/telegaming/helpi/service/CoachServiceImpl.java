@@ -55,20 +55,6 @@ public class CoachServiceImpl implements CoachService {
     }
 
     @Override
-    public Coach postTrainingMaterial(Long coachId, Long trainingId) {
-        Coach coach = coachRepository.findById(coachId)
-                .orElseThrow(()->new ResourceNotFoundException("Coach","Id", coachId));
-
-        TrainingMaterial trainingMaterial = trainingMaterialRepository.findById(trainingId)
-                .orElseThrow(()->new ResourceNotFoundException("Training","Id", trainingId));
-
-        if (!coach.getOwnedTrainingMaterials().contains(trainingMaterial)){
-            coach.postTrainingMaterial(trainingMaterial);
-        }
-        return null;
-    }
-
-    @Override
     public ResponseEntity<?> deleteCoach(Long coachId) {
 
         Coach coach = coachRepository.findById(coachId)

@@ -15,7 +15,7 @@ public class Coach {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long coachId;
     private String name;
 
     @NotNull
@@ -32,7 +32,7 @@ public class Coach {
     private Integer age;
 
     @OneToMany (fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "coach")
-    private Set<TrainingMaterial> ownedTrainingMaterials = new HashSet<>();
+    private Set<TrainingMaterial> trainingMaterials = new HashSet<>();
 
     public Coach() {
     }
@@ -46,11 +46,11 @@ public class Coach {
     }
 
     public Long getId() {
-        return id;
+        return coachId;
     }
 
-    public Coach setId(Long id) {
-        this.id = id;
+    public Coach setId(Long coachId) {
+        this.coachId = coachId;
         return this;
     }
 
@@ -108,16 +108,7 @@ public class Coach {
         return this;
     }
 
-    public Set<TrainingMaterial> getOwnedTrainingMaterials() {
-        return ownedTrainingMaterials;
-    }
-
-    public Coach setOwnedTrainingMaterials(Set<TrainingMaterial> ownedTrainingMaterials) {
-        this.ownedTrainingMaterials = ownedTrainingMaterials;
-        return this;
-    }
-
-    public void postTrainingMaterial(TrainingMaterial trainingMaterial){
-        ownedTrainingMaterials.add(trainingMaterial);
+    public Set<TrainingMaterial> getTrainingMaterials() {
+        return trainingMaterials;
     }
 }

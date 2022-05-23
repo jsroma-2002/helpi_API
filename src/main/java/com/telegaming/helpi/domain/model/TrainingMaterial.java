@@ -24,6 +24,10 @@ public class TrainingMaterial {
     @JoinColumn(name = "game_id", referencedColumnName = "gameId")
     private Game game;
 
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "coach_id", referencedColumnName = "coachId")
+    private Coach coach;
+
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "player_owner",
@@ -80,6 +84,14 @@ public class TrainingMaterial {
 
     public void setGame(Game game) {
         this.game = game;
+    }
+
+    public Coach getCoach() {
+        return coach;
+    }
+
+    public void setCoach(Coach coach) {
+        this.coach = coach;
     }
 
     public Set<Player> getOwnerPlayers() {

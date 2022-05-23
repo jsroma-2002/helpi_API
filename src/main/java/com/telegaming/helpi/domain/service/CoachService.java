@@ -11,6 +11,5 @@ public interface CoachService {
     Coach getCoachById(Long coachId);
     Coach createCoach(Coach coach);
     Coach updateCoach(Long coachId, Coach coachRequest);
-    Coach postTrainingMaterial(Long coachId, Long trainingId);
     ResponseEntity<?> deleteCoach(Long coachId);
 }
