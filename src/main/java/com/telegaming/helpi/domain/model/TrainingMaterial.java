@@ -1,5 +1,6 @@
 package com.telegaming.helpi.domain.model;
 
+import com.telegaming.helpi.domain.model.Coach;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
@@ -30,6 +31,7 @@ public class TrainingMaterial {
             inverseJoinColumns = @JoinColumn(name = "id")
     )
     private Set<Player> ownerPlayers = new HashSet<>();
+
 
     public TrainingMaterial() {
     }
@@ -83,4 +85,5 @@ public class TrainingMaterial {
     public Set<Player> getOwnerPlayers() {
         return ownerPlayers;
     }
+
 }

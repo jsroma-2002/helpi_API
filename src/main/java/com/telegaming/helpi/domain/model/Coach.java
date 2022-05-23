@@ -31,8 +31,7 @@ public class Coach {
     @Transient
     private Integer age;
 
-    @ManyToMany(cascade = CascadeType.MERGE, mappedBy = "ownerCoaches")
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @OneToMany (fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "coach")
     private Set<TrainingMaterial> ownedTrainingMaterials = new HashSet<>();
 
     public Coach() {

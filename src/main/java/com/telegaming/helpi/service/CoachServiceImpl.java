@@ -63,7 +63,7 @@ public class CoachServiceImpl implements CoachService {
                 .orElseThrow(()->new ResourceNotFoundException("Training","Id", trainingId));
 
         if (!coach.getOwnedTrainingMaterials().contains(trainingMaterial)){
-            coach.tr
+            coach.postTrainingMaterial(trainingMaterial);
         }
         return null;
     }
