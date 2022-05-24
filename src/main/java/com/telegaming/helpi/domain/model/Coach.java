@@ -31,6 +31,10 @@ public class Coach {
     @Transient
     private Integer age;
 
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "game_id", referencedColumnName = "gameId")
+    private Game game;
+
     @OneToMany (fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "coach")
     private Set<TrainingMaterial> trainingMaterials = new HashSet<>();
 
@@ -106,6 +110,14 @@ public class Coach {
     public Coach setAge(Integer age) {
         this.age = age;
         return this;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 
     public Set<TrainingMaterial> getTrainingMaterials() {
