@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@CrossOrigin
 @RequestMapping(path = "api/coaches")
 public class CoachController {
     @Autowired
