@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 public interface PlayerRepository extends JpaRepository<Player, Long> {
     public Page<Player> findById(Long id, Pageable page);
     Boolean existsByEmail(String email);
+    public Player findByEmailAndPassword(String email, String password);
 }

@@ -12,5 +12,5 @@ public interface PlayerService {
     Player updatePlayer(Long playerId, Player playerRequest);
     Player purchaseTrainingMaterial(Long playerId, Long trainingId);
     ResponseEntity<?> deletePlayer(Long playerId);
-
+    Player login(String email, String password);
 }
