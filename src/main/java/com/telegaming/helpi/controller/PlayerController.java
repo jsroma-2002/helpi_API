@@ -75,7 +75,7 @@ public class PlayerController {
         return playerService.deletePlayer(playerId);
     }
 
-    @Operation(summary = "Login", description = "Login By Email and Password", tags = {"players"})
+    @Operation(summary = "Login", description = "Login Player By Email and Password", tags = {"players"})
     @PostMapping("/login")
     public PlayerResource login(@Valid @RequestBody SaveLoginResource resource){
         return convertToResource(playerService.login(resource.getEmail(), resource.getPassword()));
