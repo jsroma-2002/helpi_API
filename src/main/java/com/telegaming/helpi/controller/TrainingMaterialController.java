@@ -46,7 +46,7 @@ public class TrainingMaterialController {
     }
 
     @Operation(summary = "Get TrainingMaterial By Game Id", description = "Get TrainingMaterial By Game Id", tags = {"trainingMaterials"})
-    @GetMapping("/{gameId}/trainings")
+    @GetMapping("/game/{gameId}/trainings")
     public Page<TrainingMaterialResource> getTrainingMaterialByGameId(Pageable pageable, @PathVariable Long gameId){
         Page<TrainingMaterial> trainingMaterialPage = trainingMaterialService.getTrainingMaterialByGameId(gameId, pageable);
         List<TrainingMaterialResource> resources = trainingMaterialPage.getContent()
@@ -58,7 +58,7 @@ public class TrainingMaterialController {
     }
 
     @Operation(summary = "Get TrainingMaterial By Coach Id", description = "Get TrainingMaterial By Coach Id", tags = {"trainingMaterials"})
-    @GetMapping("/{coachId}/trainings")
+    @GetMapping("/coach/{coachId}/trainings")
     public Page<TrainingMaterialResource> getTrainingMaterialByCoachId(Pageable pageable, @PathVariable Long coachId){
         Page<TrainingMaterial> trainingMaterialPage = trainingMaterialService.getTrainingMaterialByGameId(coachId, pageable);
         List<TrainingMaterialResource> resources = trainingMaterialPage.getContent()
