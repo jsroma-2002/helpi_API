@@ -3,6 +3,7 @@ package com.telegaming.helpi;
 import com.telegaming.helpi.domain.model.Game;
 import com.telegaming.helpi.domain.model.TrainingMaterial;
 import com.telegaming.helpi.domain.repository.GameRepository;
+import com.telegaming.helpi.domain.repository.PlayerRepository;
 import com.telegaming.helpi.domain.repository.TrainingMaterialRepository;
 import com.telegaming.helpi.domain.service.TrainingMaterialService;
 import com.telegaming.helpi.exception.ResourceNotFoundException;
@@ -30,6 +31,9 @@ public class TrainingMaterialServiceImplTest {
 
     @MockBean
     private GameRepository gameRepository;
+
+    @MockBean
+    private PlayerRepository playerRepository;
 
     @Autowired
     private TrainingMaterialService trainingMaterialService;
