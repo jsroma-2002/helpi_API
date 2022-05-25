@@ -84,4 +84,10 @@ public class PlayerServiceImpl implements PlayerService {
 
         return ResponseEntity.ok().build();
     }
+
+    @Override
+    public Player login(String email, String password) {
+
+        return playerRepository.findByEmailAndPassword(email, password);
+    }
 }

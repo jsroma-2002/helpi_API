@@ -3,6 +3,7 @@ package com.telegaming.helpi.controller;
 import com.telegaming.helpi.domain.model.Player;
 import com.telegaming.helpi.domain.service.PlayerService;
 import com.telegaming.helpi.resource.player.PlayerResource;
+import com.telegaming.helpi.resource.player.SaveLoginResource;
 import com.telegaming.helpi.resource.player.SavePlayerResource;
 import io.swagger.v3.oas.annotations.Operation;
 import org.modelmapper.ModelMapper;
@@ -71,6 +72,12 @@ public class PlayerController {
     @DeleteMapping("/{playerId}")
     public ResponseEntity<?> deletePlayer(@PathVariable long playerId){
         return playerService.deletePlayer(playerId);
+    }
+
+    @Operation(summary = "Login", description = "Login By Email and Password", tags = {"players"})
+    @PostMapping("/login")
+    public PlayerResource login(@Valid @RequestBody SaveLoginResource resource){
+        return convertToResource(playerService.login(resource.getEmail(), resource.getPassword()));
     }
 
     private Player convertToEntity(SavePlayerResource resource) {
