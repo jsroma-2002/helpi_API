@@ -1,7 +1,9 @@
 package com.telegaming.helpi.service;
 
+import com.telegaming.helpi.domain.model.Community;
 import com.telegaming.helpi.domain.model.Player;
 import com.telegaming.helpi.domain.model.TrainingMaterial;
+import com.telegaming.helpi.domain.repository.CommunityRepository;
 import com.telegaming.helpi.domain.repository.PlayerRepository;
 import com.telegaming.helpi.domain.repository.TrainingMaterialRepository;
 import com.telegaming.helpi.domain.service.PlayerService;
@@ -9,9 +11,14 @@ import com.telegaming.helpi.exception.ResourceIncorrectData;
 import com.telegaming.helpi.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @Service
 public class PlayerServiceImpl implements PlayerService {
@@ -21,6 +28,9 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Autowired
     private TrainingMaterialRepository trainingMaterialRepository;
+
+    @Autowired
+    private CommunityRepository communityRepository;
 
     @Override
     public Page<Player> getAllPlayers(Pageable pageable) {
@@ -32,6 +42,15 @@ public class PlayerServiceImpl implements PlayerService {
     public Player getPlayerById(Long playerId) {
         return playerRepository.findById(playerId)
                 .orElseThrow(()->new ResourceNotFoundException("Player", "Id",playerId));
+    }
+
+    @Override
+    public Page<Player> getPlayerByCommunityId(Long communityId, Pageable pageable) {
+        return communityRepository.findById(communityId).map(community -> {
+            Set<Player> players = community.getMemberPlayers();
+            List<Player> playersList = new ArrayList<>(players);
+            return new PageImpl<>(playersList, pageable, players.size());
+        }).orElseThrow(()->new ResourceNotFoundException("Community","Id",communityId));
     }
 
     @Override
@@ -71,6 +90,23 @@ public class PlayerServiceImpl implements PlayerService {
             trainingMaterial.getOwnerPlayers().add(player);
         }
         trainingMaterialRepository.save(trainingMaterial);
+
+        return playerRepository.save(player);
+    }
+
+    @Override
+    public Player joinCommunity(Long playerId, Long communityId) {
+        Player player = playerRepository.findById(playerId)
+                .orElseThrow(()->new ResourceNotFoundException("Player", "Id", playerId));
+
+        Community community = communityRepository.findById(communityId)
+                .orElseThrow(()->new ResourceNotFoundException("Community", "Id", communityId));
+
+        if (!player.getBelongCommunities().contains(community)){
+            player.joinCommunity(community);
+            community.getMemberPlayers().add(player);
+        }
+        communityRepository.save(community);
 
         return playerRepository.save(player);
     }
