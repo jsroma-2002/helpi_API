@@ -46,6 +46,18 @@ public class CommunityController {
         return convertToResource(communityService.getCommunityById(communityId));
     }
 
+    @Operation(summary = "Get Communities By Player Id", description = "Get Communities By Player Id", tags = {"communities"})
+    @GetMapping("/player/{playerId}")
+    public Page<CommunityResource> getCommunityByPlayerId(Pageable pageable, @PathVariable Long playerId){
+        Page<Community> communityPage = communityService.getCommunitiesByPlayerId(playerId, pageable);
+        List<CommunityResource> resources = communityPage.getContent()
+                .stream()
+                .map(this::convertToResource)
+                .collect(Collectors.toList());
+
+        return new PageImpl<>(resources, pageable, resources.size());
+    }
+
     @Operation(summary = "Post Community", description = "Post Community", tags = {"communities"})
     @PostMapping
     public CommunityResource createCommunity(@Valid @RequestBody SaveCommunityResource resource){

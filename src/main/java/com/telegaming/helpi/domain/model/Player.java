@@ -31,6 +31,10 @@ public class Player {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<TrainingMaterial> ownedTrainingMaterials = new HashSet<>();
 
+    @ManyToMany(cascade = CascadeType.MERGE, mappedBy = "memberPlayers")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Set<Community> belongCommunities = new HashSet<>();
+
     public Player() {
     }
 
@@ -93,5 +97,13 @@ public class Player {
 
     public void purchaseTraining(TrainingMaterial trainingMaterial){
         ownedTrainingMaterials.add(trainingMaterial);
+    }
+
+    public Set<Community> getBelongCommunities() {
+        return belongCommunities;
+    }
+
+    public void joinCommunity(Community community){
+        belongCommunities.add(community);
     }
 }

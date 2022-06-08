@@ -2,6 +2,8 @@ package com.telegaming.helpi.domain.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "communities")
@@ -16,6 +18,14 @@ public class Community {
 
     @NotNull
     private String communityDescription;
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "player_communities",
+            joinColumns = @JoinColumn(name = "community_id"),
+            inverseJoinColumns = @JoinColumn(name = "id")
+    )
+    private Set<Player> memberPlayers = new HashSet<>();
 
     public Community() {
     }
@@ -48,4 +58,9 @@ public class Community {
     public void setCommunityDescription(String communityDescription) {
         this.communityDescription = communityDescription;
     }
+
+    public Set<Player> getMemberPlayers() {
+        return memberPlayers;
+    }
+
 }

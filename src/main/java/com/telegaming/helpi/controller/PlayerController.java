@@ -1,10 +1,12 @@
 package com.telegaming.helpi.controller;
 
 import com.telegaming.helpi.domain.model.Player;
+import com.telegaming.helpi.domain.model.TrainingMaterial;
 import com.telegaming.helpi.domain.service.PlayerService;
 import com.telegaming.helpi.resource.player.PlayerResource;
 import com.telegaming.helpi.resource.player.SaveLoginResource;
 import com.telegaming.helpi.resource.player.SavePlayerResource;
+import com.telegaming.helpi.resource.trainingMaterial.TrainingMaterialResource;
 import io.swagger.v3.oas.annotations.Operation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +49,17 @@ public class PlayerController {
         return convertToResource(playerService.getPlayerById(playerId));
     }
 
+    @Operation(summary = "Get Player By Community Id", description = "Get Player By Community Id", tags = {"players"})
+    @GetMapping("/community/{communityId}/players")
+    public Page<PlayerResource> getPlayersByCommunityId(Pageable pageable, @PathVariable Long communityId){
+        Page<Player> playerPage = playerService.getPlayerByCommunityId(communityId, pageable);
+        List<PlayerResource> resources = playerPage.getContent()
+                .stream()
+                .map(this::convertToResource)
+                .collect(Collectors.toList());
+
+        return new PageImpl<>(resources, pageable, resources.size());
+    }
 
     @Operation(summary = "Post Player", description = "Post Player", tags = {"players"})
     @PostMapping
@@ -67,6 +80,13 @@ public class PlayerController {
     public PlayerResource purchaseTrainingMaterial(@PathVariable long playerId, @PathVariable long trainingId){
 
         return convertToResource(playerService.purchaseTrainingMaterial(playerId, trainingId));
+    }
+
+    @Operation(summary = "Join Community", description = "Join Community", tags = {"players"})
+    @PutMapping("/{playerId}/community/{communityId}")
+    public PlayerResource joinCommunity(@PathVariable long playerId, @PathVariable long communityId){
+
+        return convertToResource(playerService.joinCommunity(playerId, communityId));
     }
 
     @Operation(summary = "Delete Player", description = "Delete Player", tags = {"players"})
