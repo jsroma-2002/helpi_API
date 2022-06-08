@@ -1,6 +1,7 @@
 package com.telegaming.helpi;
 
 import com.telegaming.helpi.domain.model.Player;
+import com.telegaming.helpi.domain.repository.CommunityRepository;
 import com.telegaming.helpi.domain.repository.PlayerRepository;
 import com.telegaming.helpi.domain.repository.TrainingMaterialRepository;
 import com.telegaming.helpi.domain.service.PlayerService;
@@ -30,8 +31,12 @@ public class PlayerServiceImplTest {
     @MockBean
     private TrainingMaterialRepository trainingMaterialRepository;
 
+    @MockBean
+    private CommunityRepository communityRepository;
+
     @Autowired
     private PlayerService playerService;
+
 
     @TestConfiguration
     static class PlayerServiceImplTestConfiguration{
