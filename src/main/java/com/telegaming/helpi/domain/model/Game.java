@@ -25,9 +25,6 @@ public class Game {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "game")
     private Set<TrainingMaterial> trainingMaterials= new HashSet<>();
 
-    @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "game")
-    private Set<Coach> coaches= new HashSet<>();
 
     public Game() {
     }
@@ -68,10 +65,6 @@ public class Game {
 
     public void setCoverUri(String coverUri) {
         this.coverUri = coverUri;
-    }
-
-    public Set<Coach> getCoaches() {
-        return coaches;
     }
 
     public Set<TrainingMaterial> getTrainingMaterials() {

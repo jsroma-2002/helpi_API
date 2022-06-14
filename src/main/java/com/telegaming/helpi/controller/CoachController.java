@@ -1,14 +1,10 @@
 package com.telegaming.helpi.controller;
 
 import com.telegaming.helpi.domain.model.Coach;
-import com.telegaming.helpi.domain.model.Player;
-import com.telegaming.helpi.domain.model.TrainingMaterial;
 import com.telegaming.helpi.domain.service.CoachService;
 import com.telegaming.helpi.resource.coach.CoachResource;
 import com.telegaming.helpi.resource.coach.SaveCoachResource;
-import com.telegaming.helpi.resource.player.PlayerResource;
-import com.telegaming.helpi.resource.player.SavePlayerResource;
-import com.telegaming.helpi.resource.trainingMaterial.TrainingMaterialResource;
+import com.telegaming.helpi.resource.coach.SaveLoginResource;
 import io.swagger.v3.oas.annotations.Operation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,18 +46,6 @@ public class CoachController {
         return convertToResource(coachService.getCoachById(coachId));
     }
 
-    @Operation(summary = "Get Coaches By Game Id", description = "Get Coaches By Game Id", tags = {"coaches"})
-    @GetMapping("/{gameId}/coaches")
-    public Page<CoachResource> getCoachesByGameId(Pageable pageable, @PathVariable Long gameId){
-        Page<Coach> coachPage = coachService.getCoachesByGameId(gameId, pageable);
-        List<CoachResource> resources = coachPage.getContent()
-                .stream()
-                .map(this::convertToResource)
-                .collect(Collectors.toList());
-
-        return new PageImpl<>(resources, pageable, resources.size());
-    }
-
     @Operation(summary = "Post Coach", description = "Coach Player", tags = {"coaches"})
     @PostMapping
     public CoachResource createCoach(@Valid @RequestBody SaveCoachResource resource){
@@ -82,6 +66,12 @@ public class CoachController {
         return coachService.deleteCoach(coachId);
     }
 
+    @Operation(summary = "Login", description = "Login By Email and Password", tags = {"coaches"})
+    @PostMapping("/login")
+    public CoachResource login(@Valid @RequestBody SaveLoginResource resource){
+        return convertToResource(coachService.login(resource.getEmail(), resource.getPassword()));
+    }
+
 
     private Coach convertToEntity(SaveCoachResource resource) {
         return mapper.map(resource, Coach.class);
@@ -90,7 +80,6 @@ public class CoachController {
     private CoachResource convertToResource(Coach entity){
         return mapper.map(entity, CoachResource.class);
     }
-
 
 
 }

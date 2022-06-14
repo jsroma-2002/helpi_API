@@ -72,6 +72,7 @@ public class PlayerServiceImpl implements PlayerService {
         player.setName(playerRequest.getName());
         player.setEmail(playerRequest.getEmail());
         player.setPassword(playerRequest.getPassword());
+        player.setBalance(playerRequest.getBalance());
 
         return playerRepository.save(player);
 
