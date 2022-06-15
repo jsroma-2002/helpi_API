@@ -25,9 +25,6 @@ public class CoachServiceImpl implements CoachService {
     @Autowired
     private CoachRepository coachRepository;
 
-    @Autowired
-    private GameRepository gameRepository;
-
     @Override
     public Page<Coach> getAllCoaches(Pageable pageable){
         return coachRepository.findAll(pageable);
@@ -37,15 +34,6 @@ public class CoachServiceImpl implements CoachService {
     public Coach getCoachById(Long coachId) {
         return coachRepository.findById(coachId)
                 .orElseThrow(()->new ResourceNotFoundException("Coach", "Id", coachId));
-    }
-
-    @Override
-    public Page<Coach> getCoachesByGameId(Long gameId, Pageable pageable) {
-        return gameRepository.findById(gameId).map(game -> {
-            Set<Coach> coaches = game.getCoaches();
-            List<Coach> coachList = new ArrayList<>(coaches);
-            return new PageImpl<>(coachList, pageable, coaches.size());
-        }).orElseThrow(()->new ResourceNotFoundException("Game","Id",gameId));
     }
 
     @Override
@@ -65,6 +53,7 @@ public class CoachServiceImpl implements CoachService {
         coach.setName(coachRequest.getName());
         coach.setEmail(coachRequest.getEmail());
         coach.setPassword(coachRequest.getPassword());
+        coach.setField(coachRequest.getField());
 
         return coachRepository.save(coach);
     }
@@ -78,5 +67,9 @@ public class CoachServiceImpl implements CoachService {
         return ResponseEntity.ok().build();
     }
 
+    @Override
+    public Coach login(String email, String password) {
+        return coachRepository.findByEmailAndPassword(email, password);
+    }
 
 }

@@ -10,4 +10,6 @@ public interface CoachRepository extends JpaRepository<Coach, Long> {
     public Page<Coach> findById(Long Id, Pageable page);
 
     Boolean existsByEmail(String email);
+
+    public Coach findByEmailAndPassword(String email, String password);
 }

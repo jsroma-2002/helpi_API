@@ -16,6 +16,7 @@ public class PlayerResource {
     private String password;
     private LocalDate birthDate;
     private Integer age;
+    private Double balance;
 
     public Long getId() {
         return id;
@@ -63,4 +64,11 @@ public class PlayerResource {
         this.age = age;
     }
 
+    public Double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Double balance) {
+        this.balance = balance;
+    }
 }

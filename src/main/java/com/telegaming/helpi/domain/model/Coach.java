@@ -1,13 +1,10 @@
 package com.telegaming.helpi.domain.model;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.time.Period;
 
 @Entity
 @Table(name = "coaches")
@@ -30,13 +27,6 @@ public class Coach {
 
     @Transient
     private Integer age;
-
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "game_id", referencedColumnName = "gameId")
-    private Game game;
-
-    @OneToMany (fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "coach")
-    private Set<TrainingMaterial> trainingMaterials = new HashSet<>();
 
     public Coach() {
     }
@@ -104,7 +94,7 @@ public class Coach {
     }
 
     public Integer getAge() {
-        return age;
+        return Period.between(this.birthDate, LocalDate.now()).getYears();
     }
 
     public Coach setAge(Integer age) {
@@ -112,15 +102,4 @@ public class Coach {
         return this;
     }
 
-    public Game getGame() {
-        return game;
-    }
-
-    public void setGame(Game game) {
-        this.game = game;
-    }
-
-    public Set<TrainingMaterial> getTrainingMaterials() {
-        return trainingMaterials;
-    }
 }

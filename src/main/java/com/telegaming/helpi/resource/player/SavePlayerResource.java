@@ -12,6 +12,7 @@ public class SavePlayerResource {
     @Size(max = 50)
     private String password;
     private LocalDate birthDate;
+    private Double balance;
 
     public String getName() {
         return name;
@@ -43,5 +44,13 @@ public class SavePlayerResource {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Double balance) {
+        this.balance = balance;
     }
 }
