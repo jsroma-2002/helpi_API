@@ -13,5 +13,5 @@ public interface TrainingMaterialService {
     Page<TrainingMaterial> getTrainingMaterialByPlayerId(Long playerId, Pageable pageable);
     TrainingMaterial createTrainingMaterial(TrainingMaterial trainingMaterial, Long gameId);
     TrainingMaterial updateTrainingMaterial(Long trainingMaterialId, TrainingMaterial trainingMaterialRequest);
-    ResponseEntity<?> deleteTrainingMaterial(Long trainingMaterialId);
+    ResponseEntity<TrainingMaterial> deleteTrainingMaterial(Long trainingMaterialId);
 }

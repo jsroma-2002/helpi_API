@@ -1,29 +1,23 @@
 package com.telegaming.helpi.service;
 
 import com.telegaming.helpi.domain.model.Coach;
-import com.telegaming.helpi.domain.model.TrainingMaterial;
 import com.telegaming.helpi.domain.repository.CoachRepository;
-import com.telegaming.helpi.domain.repository.GameRepository;
-import com.telegaming.helpi.domain.repository.TrainingMaterialRepository;
 import com.telegaming.helpi.domain.service.CoachService;
 import com.telegaming.helpi.exception.ResourceIncorrectData;
 import com.telegaming.helpi.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 @Service
 public class CoachServiceImpl implements CoachService {
 
     @Autowired
     private CoachRepository coachRepository;
+
+    private static final String COACH = "Coach";
 
     @Override
     public Page<Coach> getAllCoaches(Pageable pageable){
@@ -33,22 +27,26 @@ public class CoachServiceImpl implements CoachService {
     @Override
     public Coach getCoachById(Long coachId) {
         return coachRepository.findById(coachId)
-                .orElseThrow(()->new ResourceNotFoundException("Coach", "Id", coachId));
+                .orElseThrow(()->new ResourceNotFoundException(COACH, "Id", coachId));
     }
 
     @Override
     public Coach createCoach(Coach coach) {
-        if (coachRepository.existsByEmail(coach.getEmail())){
+
+        Boolean exist = coachRepository.existsByEmail(coach.getEmail());
+
+        if (Boolean.TRUE.equals(exist)){
             throw new ResourceIncorrectData("El email ya esta en uso");
+        } else {
+            return coachRepository.save(coach);
         }
-        return coachRepository.save(coach);
     }
 
     @Override
     public Coach updateCoach(Long coachId, Coach coachRequest) {
 
         Coach coach = coachRepository.findById(coachId)
-                .orElseThrow(()->new ResourceNotFoundException("Coach","Id", coachId));
+                .orElseThrow(()->new ResourceNotFoundException(COACH,"Id", coachId));
         coach.setBirthDate(coachRequest.getBirthDate());
         coach.setName(coachRequest.getName());
         coach.setEmail(coachRequest.getEmail());
@@ -59,10 +57,10 @@ public class CoachServiceImpl implements CoachService {
     }
 
     @Override
-    public ResponseEntity<?> deleteCoach(Long coachId) {
+    public ResponseEntity<Coach> deleteCoach(Long coachId) {
 
         Coach coach = coachRepository.findById(coachId)
-                .orElseThrow(()->new ResourceNotFoundException("Coach", "Id", coachId));
+                .orElseThrow(()->new ResourceNotFoundException(COACH, "Id", coachId));
         coachRepository.delete(coach);
         return ResponseEntity.ok().build();
     }

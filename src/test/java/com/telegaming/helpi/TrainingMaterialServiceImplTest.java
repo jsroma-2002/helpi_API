@@ -24,7 +24,7 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
-public class TrainingMaterialServiceImplTest {
+class TrainingMaterialServiceImplTest {
 
     @MockBean
     private TrainingMaterialRepository trainingMaterialRepository;
@@ -48,7 +48,7 @@ public class TrainingMaterialServiceImplTest {
 
     @Test
     @DisplayName("When getTrainingMaterialById With Valid Id Then Return TrainingMaterial")
-    public void whenGetTrainingMaterialByIdWithValidIdThenReturnTrainingMaterial(){
+    void whenGetTrainingMaterialByIdWithValidIdThenReturnTrainingMaterial(){
         //Arrange
         Long id = 1L;
         TrainingMaterial trainingMaterial = new TrainingMaterial();
@@ -63,7 +63,7 @@ public class TrainingMaterialServiceImplTest {
 
     @Test
     @DisplayName("When createTrainingMaterial Then Return created TrainingMaterial")
-    public void whenCreateTrainingMaterialThenReturnTrainingMaterialCreatedTrainingMaterial(){
+    void whenCreateTrainingMaterialThenReturnTrainingMaterialCreatedTrainingMaterial(){
         //Arrange
         Long id = 1L;
         TrainingMaterial trainingMaterial = new TrainingMaterial();
@@ -87,7 +87,7 @@ public class TrainingMaterialServiceImplTest {
 
     @Test
     @DisplayName("When updateTrainingMaterial Then Return updated TrainingMaterial")
-    public void whenUpdateTrainingMaterialThenReturnUpdatedTrainingMaterial(){
+    void whenUpdateTrainingMaterialThenReturnUpdatedTrainingMaterial(){
         //Arrange
         Long id = 1L;
         TrainingMaterial trainingMaterial = new TrainingMaterial();
@@ -118,7 +118,7 @@ public class TrainingMaterialServiceImplTest {
 
     @Test
     @DisplayName("When getTrainingMaterialById With Invalid Id Then Returns Resource Not Found Exception")
-    public void whenGetTrainingMaterialByIdWithInvalidIdThenReturnsResourceNotFoundException(){
+    void whenGetTrainingMaterialByIdWithInvalidIdThenReturnsResourceNotFoundException(){
         //Arrange
         Long id = 1L;
         String template = "Resource %s not found for %s with value %s";

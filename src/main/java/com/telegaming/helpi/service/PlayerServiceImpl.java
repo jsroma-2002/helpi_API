@@ -32,6 +32,8 @@ public class PlayerServiceImpl implements PlayerService {
     @Autowired
     private CommunityRepository communityRepository;
 
+    private static final String PLAYER = "Player";
+
     @Override
     public Page<Player> getAllPlayers(Pageable pageable) {
 
@@ -41,7 +43,7 @@ public class PlayerServiceImpl implements PlayerService {
     @Override
     public Player getPlayerById(Long playerId) {
         return playerRepository.findById(playerId)
-                .orElseThrow(()->new ResourceNotFoundException("Player", "Id",playerId));
+                .orElseThrow(()->new ResourceNotFoundException(PLAYER, "Id",playerId));
     }
 
     @Override
@@ -55,18 +57,21 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public Player createPlayer(Player player) {
-        if (playerRepository.existsByEmail(player.getEmail()))
-        {
+
+        Boolean exist = playerRepository.existsByEmail(player.getEmail());
+
+        if (Boolean.TRUE.equals(exist)) {
             throw new ResourceIncorrectData("El email ya esta en uso");
+        } else {
+            return playerRepository.save(player);
         }
-        return playerRepository.save(player);
     }
 
     @Override
     public Player updatePlayer(Long playerId, Player playerRequest) {
 
         Player player = playerRepository.findById(playerId)
-                .orElseThrow(()->new ResourceNotFoundException("Player", "Id", playerId));
+                .orElseThrow(()->new ResourceNotFoundException(PLAYER, "Id", playerId));
 
         player.setBirthDate(playerRequest.getBirthDate());
         player.setName(playerRequest.getName());
@@ -81,7 +86,7 @@ public class PlayerServiceImpl implements PlayerService {
     @Override
     public Player purchaseTrainingMaterial(Long playerId, Long trainingId) {
         Player player = playerRepository.findById(playerId)
-                .orElseThrow(()->new ResourceNotFoundException("Player", "Id", playerId));
+                .orElseThrow(()->new ResourceNotFoundException(PLAYER, "Id", playerId));
 
         TrainingMaterial trainingMaterial = trainingMaterialRepository.findById(trainingId)
                 .orElseThrow(()->new ResourceNotFoundException("Training", "Id", trainingId));
@@ -98,7 +103,7 @@ public class PlayerServiceImpl implements PlayerService {
     @Override
     public Player joinCommunity(Long playerId, Long communityId) {
         Player player = playerRepository.findById(playerId)
-                .orElseThrow(()->new ResourceNotFoundException("Player", "Id", playerId));
+                .orElseThrow(()->new ResourceNotFoundException(PLAYER, "Id", playerId));
 
         Community community = communityRepository.findById(communityId)
                 .orElseThrow(()->new ResourceNotFoundException("Community", "Id", communityId));
@@ -113,9 +118,9 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
-    public ResponseEntity<?> deletePlayer(Long playerId) {
+    public ResponseEntity<Player> deletePlayer(Long playerId) {
         Player player = playerRepository.findById(playerId)
-                .orElseThrow(()->new ResourceNotFoundException("Player", "Id", playerId));
+                .orElseThrow(()->new ResourceNotFoundException(PLAYER, "Id", playerId));
 
         playerRepository.delete(player);
 

@@ -46,7 +46,7 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public ResponseEntity<?> deleteGame(Long gameId) {
+    public ResponseEntity<Game> deleteGame(Long gameId) {
         Game game = gameRepository.findById(gameId)
                 .orElseThrow(()->new ResourceNotFoundException("Game", "Id", gameId));
 

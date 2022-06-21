@@ -1,6 +1,5 @@
 package com.telegaming.helpi.domain.model;
 
-import com.telegaming.helpi.domain.model.Coach;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;

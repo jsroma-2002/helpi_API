@@ -1,7 +1,6 @@
 package com.telegaming.helpi.service;
 
 import com.telegaming.helpi.domain.model.Community;
-import com.telegaming.helpi.domain.model.TrainingMaterial;
 import com.telegaming.helpi.domain.repository.CommunityRepository;
 import com.telegaming.helpi.domain.repository.PlayerRepository;
 import com.telegaming.helpi.domain.service.CommunityService;
@@ -25,6 +24,8 @@ public class CommunityServiceImpl implements CommunityService {
 
     @Autowired
     private PlayerRepository playerRepository;
+
+    private static final String COMMUNITY = "Community";
     
     @Override
     public Page<Community> getAllCommunities(Pageable pageable) {
@@ -34,7 +35,7 @@ public class CommunityServiceImpl implements CommunityService {
     @Override
     public Community getCommunityById(Long communityId) {
         return communityRepository.findById(communityId)
-                .orElseThrow(()->new ResourceNotFoundException("Community", "Id",communityId));
+                .orElseThrow(()->new ResourceNotFoundException(COMMUNITY, "Id",communityId));
     }
 
     @Override
@@ -54,7 +55,7 @@ public class CommunityServiceImpl implements CommunityService {
     @Override
     public Community updateCommunity(Long communityId, Community communityRequest) {
         Community community = communityRepository.findById(communityId)
-                .orElseThrow(()->new ResourceNotFoundException("Community", "Id", communityId));
+                .orElseThrow(()->new ResourceNotFoundException(COMMUNITY, "Id", communityId));
 
         community.setCommunityTitle(communityRequest.getCommunityTitle());
         community.setCommunityDescription(communityRequest.getCommunityDescription());
@@ -63,9 +64,9 @@ public class CommunityServiceImpl implements CommunityService {
     }
 
     @Override
-    public ResponseEntity<?> deleteCommunity(Long communityId) {
+    public ResponseEntity<Community> deleteCommunity(Long communityId) {
         Community community = communityRepository.findById(communityId)
-                .orElseThrow(()->new ResourceNotFoundException("Community", "Id", communityId));
+                .orElseThrow(()->new ResourceNotFoundException(COMMUNITY, "Id", communityId));
 
         communityRepository.delete(community);
 

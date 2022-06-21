@@ -10,5 +10,5 @@ public interface GameService {
     Game getGameById(Long gameId);
     Game createGame(Game game);
     Game updateGame(Long gameId, Game gameRequest);
-    ResponseEntity<?> deleteGame(Long gameId);
+    ResponseEntity<Game> deleteGame(Long gameId);
 }

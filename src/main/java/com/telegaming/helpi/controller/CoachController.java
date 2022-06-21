@@ -62,7 +62,7 @@ public class CoachController {
 
     @Operation(summary = "Delete coach", description = "Delete Coach", tags = {"coaches"})
     @DeleteMapping("/{coachId}")
-    public ResponseEntity<?> deleteCoach(@PathVariable long coachId){
+    public ResponseEntity<Coach> deleteCoach(@PathVariable long coachId){
         return coachService.deleteCoach(coachId);
     }
 
