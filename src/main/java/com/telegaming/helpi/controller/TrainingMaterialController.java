@@ -2,8 +2,8 @@ package com.telegaming.helpi.controller;
 
 import com.telegaming.helpi.domain.model.TrainingMaterial;
 import com.telegaming.helpi.domain.service.TrainingMaterialService;
-import com.telegaming.helpi.resource.trainingMaterial.TrainingMaterialResource;
-import com.telegaming.helpi.resource.trainingMaterial.SaveTrainingMaterialResource;
+import com.telegaming.helpi.resource.training.TrainingMaterialResource;
+import com.telegaming.helpi.resource.training.SaveTrainingMaterialResource;
 import io.swagger.v3.oas.annotations.Operation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,7 +98,7 @@ public class TrainingMaterialController {
 
     @Operation(summary = "Delete TrainingMaterial", description = "Delete TrainingMaterial", tags = {"trainingMaterials"})
     @DeleteMapping("/{trainingMaterialId}")
-    public ResponseEntity<?> deleteTrainingMaterial(@PathVariable long trainingMaterialId){
+    public ResponseEntity<TrainingMaterial> deleteTrainingMaterial(@PathVariable long trainingMaterialId){
         return trainingMaterialService.deleteTrainingMaterial(trainingMaterialId);
     }
 

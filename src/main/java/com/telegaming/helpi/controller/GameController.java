@@ -63,7 +63,7 @@ public class GameController {
 
     @Operation(summary = "Delete Game", description = "Delete Game", tags = {"games"})
     @DeleteMapping("/{gameId}")
-    public ResponseEntity<?> deleteGame(@PathVariable long gameId){
+    public ResponseEntity<Game> deleteGame(@PathVariable long gameId){
         return gameService.deleteGame(gameId);
     }
 

@@ -23,7 +23,7 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
-public class PlayerServiceImplTest {
+class PlayerServiceImplTest {
 
     @MockBean
     private PlayerRepository playerRepository;
@@ -48,7 +48,7 @@ public class PlayerServiceImplTest {
 
     @Test
     @DisplayName("When getPlayerById With Valid Id Then Return Player")
-    public void whenGetPlayerByIdWithValidIdThenReturnPlayer(){
+    void whenGetPlayerByIdWithValidIdThenReturnPlayer(){
         //Arrange
         Long id = 1L;
         Player player = new Player();
@@ -63,7 +63,7 @@ public class PlayerServiceImplTest {
 
     @Test
     @DisplayName("When createPlayer Then Return created Player")
-    public void whenCreatePlayerThenReturnPlayerCreatedPlayer(){
+    void whenCreatePlayerThenReturnPlayerCreatedPlayer(){
         //Arrange
         Long id = 1L;
         Player player = new Player();
@@ -79,7 +79,7 @@ public class PlayerServiceImplTest {
 
     @Test
     @DisplayName("When updatePlayer Then Return updated Player")
-    public void whenUpdatePlayerThenReturnUpdatedPlayer(){
+    void whenUpdatePlayerThenReturnUpdatedPlayer(){
         //Arrange
         Long id = 1L;
         Player player = new Player();
@@ -104,7 +104,7 @@ public class PlayerServiceImplTest {
 
     @Test
     @DisplayName("When getPlayerById With Invalid Id Then Returns Resource Not Found Exception")
-    public void whenGetPlayerByIdWithInvalidIdThenReturnsResourceNotFoundException(){
+    void whenGetPlayerByIdWithInvalidIdThenReturnsResourceNotFoundException(){
         //Arrange
         Long id = 1L;
         String template = "Resource %s not found for %s with value %s";

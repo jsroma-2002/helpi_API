@@ -11,5 +11,5 @@ public interface CommunityService {
     Page<Community> getCommunitiesByPlayerId(Long playerId, Pageable pageable);
     Community createCommunity(Community community);
     Community updateCommunity(Long communityId, Community communityRequest);
-    ResponseEntity<?> deleteCommunity(Long communityId);
+    ResponseEntity<Community> deleteCommunity(Long communityId);
 }

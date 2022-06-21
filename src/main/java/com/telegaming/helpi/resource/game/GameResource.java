@@ -1,10 +1,5 @@
 package com.telegaming.helpi.resource.game;
 
-import com.telegaming.helpi.domain.model.TrainingMaterial;
-
-import java.util.HashSet;
-import java.util.Set;
-
 public class GameResource {
 
     private Long gameId;

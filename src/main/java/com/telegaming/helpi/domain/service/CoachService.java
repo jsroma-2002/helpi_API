@@ -10,6 +10,6 @@ public interface CoachService {
     Coach getCoachById(Long coachId);
     Coach createCoach(Coach coach);
     Coach updateCoach(Long coachId, Coach coachRequest);
-    ResponseEntity<?> deleteCoach(Long coachId);
+    ResponseEntity<Coach> deleteCoach(Long coachId);
     Coach login(String email, String password);
 }

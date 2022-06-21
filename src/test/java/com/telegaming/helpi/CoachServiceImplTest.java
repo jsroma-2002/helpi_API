@@ -22,7 +22,7 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
-public class CoachServiceImplTest {
+class CoachServiceImplTest {
 
     @MockBean
     private CoachRepository coachRepository;
@@ -41,7 +41,7 @@ public class CoachServiceImplTest {
 
     @Test
     @DisplayName("When getCoach by Id with valid Id then return Coach")
-    public void whenGetCoachByIdWithValidIdThenReturnCoach(){
+    void whenGetCoachByIdWithValidIdThenReturnCoach(){
         //Arrange
         Long id = 1L;
         Coach coach = new Coach();
@@ -56,7 +56,7 @@ public class CoachServiceImplTest {
 
     @Test
     @DisplayName("When createCoach Then Return created Coach")
-    public void whenCreateCoachThenReturnCoachCreatedCoach(){
+    void whenCreateCoachThenReturnCoachCreatedCoach(){
         //Arrange
         Long id = 1L;
         Coach coach = new Coach();
@@ -72,7 +72,7 @@ public class CoachServiceImplTest {
 
     @Test
     @DisplayName("When updateCoach then return update Coach")
-    public void whenUpdateCoachThenReturnUpdateCoach(){
+    void whenUpdateCoachThenReturnUpdateCoach(){
         //Arrange
         Long id = 1L;
         Coach coach = new Coach();
@@ -97,7 +97,7 @@ public class CoachServiceImplTest {
 
     @Test
     @DisplayName("When getCoachById With Invalid Id Then Returns Resource Not Found Exception")
-    public void whenGetCoachByIdWithInvalidIdThenReturnsResourceNotFoundException(){
+    void whenGetCoachByIdWithInvalidIdThenReturnsResourceNotFoundException(){
         //Arrange
         Long id = 1L;
         String template = "Resource %s not found for %s with value %s";

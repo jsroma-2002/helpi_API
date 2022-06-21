@@ -30,6 +30,8 @@ public class TrainingMaterialServiceImpl implements TrainingMaterialService {
     @Autowired
     private PlayerRepository playerRepository;
 
+    private static final String TRAINING = "TrainingMaterial";
+
     @Override
     public Page<TrainingMaterial> getAllTrainingMaterials(Pageable pageable) {
 
@@ -39,7 +41,7 @@ public class TrainingMaterialServiceImpl implements TrainingMaterialService {
     @Override
     public TrainingMaterial getTrainingMaterialById(Long trainingMaterialId) {
         return trainingMaterialRepository.findById(trainingMaterialId)
-                .orElseThrow(()->new ResourceNotFoundException("TrainingMaterial", "Id",trainingMaterialId));
+                .orElseThrow(()->new ResourceNotFoundException(TRAINING, "Id",trainingMaterialId));
     }
 
     @Override
@@ -84,7 +86,7 @@ public class TrainingMaterialServiceImpl implements TrainingMaterialService {
     public TrainingMaterial updateTrainingMaterial(Long trainingMaterialId, TrainingMaterial trainingMaterialRequest) {
 
         TrainingMaterial trainingMaterial = trainingMaterialRepository.findById(trainingMaterialId)
-                .orElseThrow(()->new ResourceNotFoundException("TrainingMaterial", "Id", trainingMaterialId));
+                .orElseThrow(()->new ResourceNotFoundException(TRAINING, "Id", trainingMaterialId));
 
         trainingMaterial.setTitle(trainingMaterialRequest.getTitle());
         trainingMaterial.setTrainingDescription(trainingMaterialRequest.getTrainingDescription());
@@ -95,9 +97,9 @@ public class TrainingMaterialServiceImpl implements TrainingMaterialService {
     }
 
     @Override
-    public ResponseEntity<?> deleteTrainingMaterial(Long trainingMaterialId) {
+    public ResponseEntity<TrainingMaterial> deleteTrainingMaterial(Long trainingMaterialId) {
         TrainingMaterial trainingMaterial = trainingMaterialRepository.findById(trainingMaterialId)
-                .orElseThrow(()->new ResourceNotFoundException("TrainingMaterial", "Id", trainingMaterialId));
+                .orElseThrow(()->new ResourceNotFoundException(TRAINING, "Id", trainingMaterialId));
 
         trainingMaterialRepository.delete(trainingMaterial);
 

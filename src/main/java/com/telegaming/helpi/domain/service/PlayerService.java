@@ -13,6 +13,6 @@ public interface PlayerService {
     Player updatePlayer(Long playerId, Player playerRequest);
     Player purchaseTrainingMaterial(Long playerId, Long trainingId);
     Player joinCommunity(Long playerId, Long communityId);
-    ResponseEntity<?> deletePlayer(Long playerId);
+    ResponseEntity<Player> deletePlayer(Long playerId);
     Player login(String email, String password);
 }

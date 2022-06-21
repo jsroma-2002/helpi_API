@@ -23,7 +23,7 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
-public class CommunityServiceImplTest {
+class CommunityServiceImplTest {
 
     @MockBean
     private CommunityRepository communityRepository;
@@ -44,7 +44,7 @@ public class CommunityServiceImplTest {
 
     @Test
     @DisplayName("When getCommunityById With Valid Id Then Return Community")
-    public void whenGetCommunityByIdWithValidIdThenReturnCommunity(){
+    void whenGetCommunityByIdWithValidIdThenReturnCommunity(){
         //Arrange
         Long id = 1L;
         Community community = new Community();
@@ -59,7 +59,7 @@ public class CommunityServiceImplTest {
 
     @Test
     @DisplayName("When createCommunity Then Return created Community")
-    public void whenCreateCommunityThenReturnCommunityCreatedCommunity(){
+    void whenCreateCommunityThenReturnCommunityCreatedCommunity(){
         //Arrange
         Long id = 1L;
         Community community = new Community();
@@ -75,7 +75,7 @@ public class CommunityServiceImplTest {
 
     @Test
     @DisplayName("When updateCommunity Then Return updated Community")
-    public void whenUpdateCommunityThenReturnUpdatedCommunity(){
+    void whenUpdateCommunityThenReturnUpdatedCommunity(){
         //Arrange
         Long id = 1L;
         Community community = new Community();
@@ -100,7 +100,7 @@ public class CommunityServiceImplTest {
 
     @Test
     @DisplayName("When getCommunityById With Invalid Id Then Returns Resource Not Found Exception")
-    public void whenGetCommunityByIdWithInvalidIdThenReturnsResourceNotFoundException(){
+    void whenGetCommunityByIdWithInvalidIdThenReturnsResourceNotFoundException(){
         //Arrange
         Long id = 1L;
         String template = "Resource %s not found for %s with value %s";

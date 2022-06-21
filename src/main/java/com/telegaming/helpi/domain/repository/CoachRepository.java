@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CoachRepository extends JpaRepository<Coach, Long> {
 
-    public Page<Coach> findById(Long Id, Pageable page);
+    public Page<Coach> findById(Long id, Pageable page);
 
     Boolean existsByEmail(String email);
 

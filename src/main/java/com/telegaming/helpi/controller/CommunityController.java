@@ -74,7 +74,7 @@ public class CommunityController {
 
     @Operation(summary = "Delete Community", description = "Delete Community", tags = {"communities"})
     @DeleteMapping("/{communityId}")
-    public ResponseEntity<?> deleteCommunity(@PathVariable long communityId){
+    public ResponseEntity<Community> deleteCommunity(@PathVariable long communityId){
         return communityService.deleteCommunity(communityId);
     }
 

@@ -1,12 +1,10 @@
 package com.telegaming.helpi.controller;
 
 import com.telegaming.helpi.domain.model.Player;
-import com.telegaming.helpi.domain.model.TrainingMaterial;
 import com.telegaming.helpi.domain.service.PlayerService;
 import com.telegaming.helpi.resource.player.PlayerResource;
 import com.telegaming.helpi.resource.player.SaveLoginResource;
 import com.telegaming.helpi.resource.player.SavePlayerResource;
-import com.telegaming.helpi.resource.trainingMaterial.TrainingMaterialResource;
 import io.swagger.v3.oas.annotations.Operation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,7 +89,7 @@ public class PlayerController {
 
     @Operation(summary = "Delete Player", description = "Delete Player", tags = {"players"})
     @DeleteMapping("/{playerId}")
-    public ResponseEntity<?> deletePlayer(@PathVariable long playerId){
+    public ResponseEntity<Player> deletePlayer(@PathVariable long playerId){
         return playerService.deletePlayer(playerId);
     }
 
