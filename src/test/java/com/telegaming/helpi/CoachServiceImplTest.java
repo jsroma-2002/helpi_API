@@ -22,6 +22,7 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
+@SpringBootTest
 class CoachServiceImplTest {
 
     @MockBean
