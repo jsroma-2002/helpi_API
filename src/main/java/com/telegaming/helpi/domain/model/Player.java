@@ -24,7 +24,8 @@ public class Player {
     @NotNull
     private String password;
     private LocalDate birthDate;
-    private Double balance;
+    private Float balance;
+    private String playerProfilePicture;
     @Transient
     private Integer age;
 
@@ -39,12 +40,13 @@ public class Player {
     public Player() {
     }
 
-    public Player(String name, String email, String password, LocalDate birthDate, Double balance) {
+    public Player(String name, String email, String password, LocalDate birthDate, Float balance, String playerProfilePicture) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.birthDate = birthDate;
         this.balance = balance;
+        this.playerProfilePicture = playerProfilePicture;
     }
 
     public Long getId() {
@@ -109,11 +111,19 @@ public class Player {
         belongCommunities.add(community);
     }
 
-    public Double getBalance() {
+    public Float getBalance() {
         return balance;
     }
 
-    public void setBalance(Double balance) {
+    public void setBalance(Float balance) {
         this.balance = balance;
+    }
+
+    public String getPlayerProfilePicture() {
+        return playerProfilePicture;
+    }
+
+    public void setPlayerProfilePicture(String playerProfilePicture) {
+        this.playerProfilePicture = playerProfilePicture;
     }
 }

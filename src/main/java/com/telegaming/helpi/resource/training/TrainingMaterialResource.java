@@ -11,6 +11,7 @@ public class TrainingMaterialResource {
     private String trainingCoverUri;
     private Game game;
     private Coach coach;
+    private Float value;
 
     public Long getTrainingMaterialId() {
         return trainingMaterialId;
@@ -58,5 +59,13 @@ public class TrainingMaterialResource {
 
     public void setCoach(Coach coach) {
         this.coach = coach;
+    }
+
+    public Float getValue() {
+        return value;
+    }
+
+    public void setValue(Float value) {
+        this.value = value;
     }
 }

@@ -19,11 +19,13 @@ public class TrainingMaterial {
     @NotNull
     private String trainingCoverUri;
 
+    private Float value;
+
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "game_id", referencedColumnName = "gameId")
     private Game game;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "coach_id", referencedColumnName = "coachId")
     private Coach coach;
 
@@ -39,10 +41,11 @@ public class TrainingMaterial {
     public TrainingMaterial() {
     }
 
-    public TrainingMaterial(String title, String trainingDescription, String trainingCoverUri) {
+    public TrainingMaterial(String title, String trainingDescription, String trainingCoverUri, Float value) {
         this.title = title;
         this.trainingDescription = trainingDescription;
         this.trainingCoverUri = trainingCoverUri;
+        this.value = value;
     }
 
     public Long getTrainingMaterialId() {
@@ -97,4 +100,11 @@ public class TrainingMaterial {
         return ownerPlayers;
     }
 
+    public Float getValue() {
+        return value;
+    }
+
+    public void setValue(Float value) {
+        this.value = value;
+    }
 }

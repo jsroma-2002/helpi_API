@@ -1,7 +1,9 @@
 package com.telegaming.helpi.service;
 
+import com.telegaming.helpi.domain.model.Coach;
 import com.telegaming.helpi.domain.model.Game;
 import com.telegaming.helpi.domain.model.TrainingMaterial;
+import com.telegaming.helpi.domain.repository.CoachRepository;
 import com.telegaming.helpi.domain.repository.GameRepository;
 import com.telegaming.helpi.domain.repository.PlayerRepository;
 import com.telegaming.helpi.domain.repository.TrainingMaterialRepository;
@@ -29,6 +31,9 @@ public class TrainingMaterialServiceImpl implements TrainingMaterialService {
 
     @Autowired
     private PlayerRepository playerRepository;
+
+    @Autowired
+    private CoachRepository coachRepository;
 
     private static final String TRAINING = "TrainingMaterial";
 
@@ -91,9 +96,24 @@ public class TrainingMaterialServiceImpl implements TrainingMaterialService {
         trainingMaterial.setTitle(trainingMaterialRequest.getTitle());
         trainingMaterial.setTrainingDescription(trainingMaterialRequest.getTrainingDescription());
         trainingMaterial.setTrainingCoverUri(trainingMaterialRequest.getTrainingCoverUri());
+        trainingMaterial.setValue(trainingMaterialRequest.getValue());
 
         return trainingMaterialRepository.save(trainingMaterial);
 
+    }
+
+    @Override
+    public TrainingMaterial updateCreator(Long trainingMaterialId, Long coachId) {
+
+        TrainingMaterial trainingMaterial = trainingMaterialRepository.findById(trainingMaterialId)
+                .orElseThrow(()->new ResourceNotFoundException(TRAINING, "Id", trainingMaterialId));
+
+        Coach coach = coachRepository.findById(coachId)
+                .orElseThrow(()->new ResourceNotFoundException("Coach", "Id", coachId));
+
+        trainingMaterial.setCoach(coach);
+
+        return trainingMaterialRepository.save(trainingMaterial);
     }
 
     @Override

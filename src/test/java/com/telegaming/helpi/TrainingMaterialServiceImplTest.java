@@ -2,6 +2,7 @@ package com.telegaming.helpi;
 
 import com.telegaming.helpi.domain.model.Game;
 import com.telegaming.helpi.domain.model.TrainingMaterial;
+import com.telegaming.helpi.domain.repository.CoachRepository;
 import com.telegaming.helpi.domain.repository.GameRepository;
 import com.telegaming.helpi.domain.repository.PlayerRepository;
 import com.telegaming.helpi.domain.repository.TrainingMaterialRepository;
@@ -34,6 +35,9 @@ class TrainingMaterialServiceImplTest {
 
     @MockBean
     private PlayerRepository playerRepository;
+
+    @MockBean
+    private CoachRepository coachRepository;
 
     @Autowired
     private TrainingMaterialService trainingMaterialService;

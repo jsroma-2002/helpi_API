@@ -11,7 +11,8 @@ public class PlayerResource {
     private String password;
     private LocalDate birthDate;
     private Integer age;
-    private Double balance;
+    private Float balance;
+    private String playerProfilePicture;
 
     public Long getId() {
         return id;
@@ -59,11 +60,19 @@ public class PlayerResource {
         this.age = age;
     }
 
-    public Double getBalance() {
+    public Float getBalance() {
         return balance;
     }
 
-    public void setBalance(Double balance) {
+    public void setBalance(Float balance) {
         this.balance = balance;
+    }
+
+    public String getPlayerProfilePicture() {
+        return playerProfilePicture;
+    }
+
+    public void setPlayerProfilePicture(String playerProfilePicture) {
+        this.playerProfilePicture = playerProfilePicture;
     }
 }
