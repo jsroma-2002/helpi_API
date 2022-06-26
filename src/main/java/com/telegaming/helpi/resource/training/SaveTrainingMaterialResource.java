@@ -8,6 +8,7 @@ public class SaveTrainingMaterialResource {
     private String title;
     private String trainingDescription;
     private String trainingCoverUri;
+    private Float value;
 
     public String getTitle() {
         return title;
@@ -33,4 +34,11 @@ public class SaveTrainingMaterialResource {
         this.trainingCoverUri = trainingCoverUri;
     }
 
+    public Float getValue() {
+        return value;
+    }
+
+    public void setValue(Float value) {
+        this.value = value;
+    }
 }

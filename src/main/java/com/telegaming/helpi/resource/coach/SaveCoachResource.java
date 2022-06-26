@@ -13,6 +13,7 @@ public class SaveCoachResource {
     private String password;
     private String field;
     private LocalDate birthDate;
+    private String coachProfilePicture;
 
     public String getName() {
         return name;
@@ -52,5 +53,13 @@ public class SaveCoachResource {
 
     public void setField(String field) {
         this.field = field;
+    }
+
+    public String getCoachProfilePicture() {
+        return coachProfilePicture;
+    }
+
+    public void setCoachProfilePicture(String coachProfilePicture) {
+        this.coachProfilePicture = coachProfilePicture;
     }
 }

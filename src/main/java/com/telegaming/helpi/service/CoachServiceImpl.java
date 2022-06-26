@@ -52,6 +52,7 @@ public class CoachServiceImpl implements CoachService {
         coach.setEmail(coachRequest.getEmail());
         coach.setPassword(coachRequest.getPassword());
         coach.setField(coachRequest.getField());
+        coach.setCoachProfilePicture(coachRequest.getCoachProfilePicture());
 
         return coachRepository.save(coach);
     }

@@ -58,18 +58,6 @@ public class TrainingMaterialController {
         return new PageImpl<>(resources, pageable, resources.size());
     }
 
-    @Operation(summary = "Get TrainingMaterial By Coach Id", description = "Get TrainingMaterial By Coach Id", tags = {"trainingMaterials"})
-    @GetMapping("/coach/{coachId}/trainings")
-    public Page<TrainingMaterialResource> getTrainingMaterialByCoachId(Pageable pageable, @PathVariable Long coachId){
-        Page<TrainingMaterial> trainingMaterialPage = trainingMaterialService.getTrainingMaterialByGameId(coachId, pageable);
-        List<TrainingMaterialResource> resources = trainingMaterialPage.getContent()
-                .stream()
-                .map(this::convertToResource)
-                .collect(Collectors.toList());
-
-        return new PageImpl<>(resources, pageable, resources.size());
-    }
-
     @Operation(summary = "Get TrainingMaterial By Player Id", description = "Get TrainingMaterial By Player Id", tags = {"trainingMaterials"})
     @GetMapping("/player/{playerId}")
     public Page<TrainingMaterialResource> getTrainingMaterialByPlayerId(Pageable pageable, @PathVariable Long playerId){
@@ -96,12 +84,17 @@ public class TrainingMaterialController {
         return convertToResource(trainingMaterialService.updateTrainingMaterial(trainingMaterialId, trainingMaterial));
     }
 
+    @Operation(summary = "Update creator", description = "Update creator coach", tags = {"trainingMaterials"})
+    @PutMapping("/{trainingMaterialId},/coach/{coachId}")
+    public TrainingMaterialResource updateCreator(@PathVariable long trainingMaterialId, @PathVariable long coachId){
+        return convertToResource(trainingMaterialService.updateCreator(trainingMaterialId, coachId));
+    }
+
     @Operation(summary = "Delete TrainingMaterial", description = "Delete TrainingMaterial", tags = {"trainingMaterials"})
     @DeleteMapping("/{trainingMaterialId}")
     public ResponseEntity<TrainingMaterial> deleteTrainingMaterial(@PathVariable long trainingMaterialId){
         return trainingMaterialService.deleteTrainingMaterial(trainingMaterialId);
     }
-
 
     private TrainingMaterial convertToEntity(SaveTrainingMaterialResource resource) {
         return mapper.map(resource, TrainingMaterial.class);

@@ -12,7 +12,8 @@ public class SavePlayerResource {
     @Size(max = 50)
     private String password;
     private LocalDate birthDate;
-    private Double balance;
+    private Float balance;
+    private String playerProfilePicture;
 
     public String getName() {
         return name;
@@ -46,11 +47,19 @@ public class SavePlayerResource {
         this.password = password;
     }
 
-    public Double getBalance() {
+    public Float getBalance() {
         return balance;
     }
 
-    public void setBalance(Double balance) {
+    public void setBalance(Float balance) {
         this.balance = balance;
+    }
+
+    public String getPlayerProfilePicture() {
+        return playerProfilePicture;
+    }
+
+    public void setPlayerProfilePicture(String playerProfilePicture) {
+        this.playerProfilePicture = playerProfilePicture;
     }
 }

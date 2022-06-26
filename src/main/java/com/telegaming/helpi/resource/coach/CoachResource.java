@@ -11,6 +11,7 @@ public class CoachResource {
     private String field;
     private LocalDate birthDate;
     private Integer age;
+    private String coachProfilePicture;
 
     public Long getCoachId() {
         return coachId;
@@ -73,5 +74,13 @@ public class CoachResource {
     public CoachResource setAge(Integer age) {
         this.age = age;
         return this;
+    }
+
+    public String getCoachProfilePicture() {
+        return coachProfilePicture;
+    }
+
+    public void setCoachProfilePicture(String coachProfilePicture) {
+        this.coachProfilePicture = coachProfilePicture;
     }
 }
