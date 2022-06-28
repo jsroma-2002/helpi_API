@@ -124,4 +124,8 @@ public class Coach {
     public void setCoachProfilePicture(String coachProfilePicture) {
         this.coachProfilePicture = coachProfilePicture;
     }
+
+    public Set<TrainingMaterial> getCreatedTrainings() {
+        return createdTrainings;
+    }
 }

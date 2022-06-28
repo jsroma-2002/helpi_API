@@ -60,8 +60,8 @@ public class TrainingMaterialServiceImpl implements TrainingMaterialService {
 
     @Override
     public Page<TrainingMaterial> getTrainingMaterialByCoachId(Long coachId, Pageable pageable) {
-        return gameRepository.findById(coachId).map(coach -> {
-            Set<TrainingMaterial> trainingMaterials = coach.getTrainingMaterials();
+        return coachRepository.findById(coachId).map(coach -> {
+            Set<TrainingMaterial> trainingMaterials = coach.getCreatedTrainings();
             List<TrainingMaterial> trainingMaterialList = new ArrayList<>(trainingMaterials);
             return new PageImpl<>(trainingMaterialList, pageable, trainingMaterials.size());
         }).orElseThrow(()->new ResourceNotFoundException("Coach","Id",coachId));

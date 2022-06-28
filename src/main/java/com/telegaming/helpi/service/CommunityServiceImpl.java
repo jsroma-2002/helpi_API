@@ -59,6 +59,7 @@ public class CommunityServiceImpl implements CommunityService {
 
         community.setCommunityTitle(communityRequest.getCommunityTitle());
         community.setCommunityDescription(communityRequest.getCommunityDescription());
+        community.setCommunityCover(communityRequest.getCommunityCover());
 
         return communityRepository.save(community);
     }

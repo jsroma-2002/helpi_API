@@ -10,7 +10,6 @@ public class PlayerResource {
     private String email;
     private String password;
     private LocalDate birthDate;
-    private Integer age;
     private Float balance;
     private String playerProfilePicture;
 
@@ -55,10 +54,6 @@ public class PlayerResource {
     }
 
     public Integer getAge() {return Period.between(this.birthDate, LocalDate.now()).getYears(); }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
 
     public Float getBalance() {
         return balance;

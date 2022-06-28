@@ -19,6 +19,8 @@ public class Community {
     @NotNull
     private String communityDescription;
 
+    private String communityCover;
+
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "player_communities",
@@ -30,9 +32,10 @@ public class Community {
     public Community() {
     }
 
-    public Community(String communityTitle, String communityDescription) {
+    public Community(String communityTitle, String communityDescription, String communityCover) {
         this.communityTitle = communityTitle;
         this.communityDescription = communityDescription;
+        this.communityCover = communityCover;
     }
 
     public Long getCommunityId() {
@@ -63,4 +66,11 @@ public class Community {
         return memberPlayers;
     }
 
+    public String getCommunityCover() {
+        return communityCover;
+    }
+
+    public void setCommunityCover(String communityCover) {
+        this.communityCover = communityCover;
+    }
 }
