@@ -7,6 +7,7 @@ public class SaveCommunityResource {
     @Size(max = 50)
     private String communityTitle;
     private String communityDescription;
+    private String communityCover;
 
     public String getCommunityTitle() {
         return communityTitle;
@@ -22,5 +23,13 @@ public class SaveCommunityResource {
 
     public void setCommunityDescription(String communityDescription) {
         this.communityDescription = communityDescription;
+    }
+
+    public String getCommunityCover() {
+        return communityCover;
+    }
+
+    public void setCommunityCover(String communityCover) {
+        this.communityCover = communityCover;
     }
 }
